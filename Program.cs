@@ -217,7 +217,7 @@ char continuar = 'S';
         Console.ReadKey();
  
 
-char continuar = 'S';
+
 
 do
 {
