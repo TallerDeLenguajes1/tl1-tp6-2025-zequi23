@@ -307,3 +307,174 @@ do
 
 Console.WriteLine("Gracias por usar la calculadora. Presione cualquier tecla para salir.");
 Console.ReadKey();
+
+
+        Console.Write("Ingrese una cadena de texto: ");
+        string texto1 = Console.ReadLine();
+        Console.WriteLine("La longitud de la cadena es: " + texto1.Length);
+
+        Console.Write("Ingrese una segunda cadena de texto: ");
+        string texto2 = Console.ReadLine();
+        string concatenacion = texto1 + texto2;
+        Console.WriteLine("La concatenacion de ambas cadenas es: " + concatenacion);
+
+        Console.Write("Ingrese el indice de inicio para extraer la subcadena: ");
+        string inicioStr = Console.ReadLine();
+        int inicio;
+        if (!int.TryParse(inicioStr, out inicio))
+        {
+            Console.WriteLine("Indice invalido.");
+        }
+        else
+        {
+            Console.Write("Ingrese la cantidad de caracteres a extraer: ");
+            string cantidadStr = Console.ReadLine();
+            int cantidad;
+            if (!int.TryParse(cantidadStr, out cantidad))
+            {
+                Console.WriteLine("Cantidad invalida.");
+            }
+            else
+            {
+                if (inicio < 0 || inicio >= texto1.Length || inicio + cantidad > texto1.Length)
+                {
+                    Console.WriteLine("El rango indicado esta fuera de limites.");
+                }
+                else
+                {
+                    string subcadena = texto1.Substring(inicio, cantidad);
+                    Console.WriteLine("La subcadena extraida es: " + subcadena);
+                }
+            }
+        }
+
+        Console.Write("Ingrese el primer numero para la operacion: ");
+        string num1Str = Console.ReadLine();
+        double Num1;
+        if (!double.TryParse(num1Str, out Num1))
+        {
+            Console.WriteLine("El primer numero ingresado no es valido.");
+        }
+        else
+        {
+            Console.Write("Ingrese el segundo numero: ");
+            string num2Str = Console.ReadLine();
+            double num2;
+            if (!double.TryParse(num2Str, out num2))
+            {
+                Console.WriteLine("El segundo numero ingresado no es valido.");
+            }
+            else
+            {
+                double suma = Num1 + num2;
+                Console.WriteLine("La suma de " + Num1.ToString() + " y de " +
+                                  num2.ToString() + " es igual a: " + suma.ToString());
+            }
+        }
+
+        Console.WriteLine("Mostrando la primera cadena caracter por caracter:");
+        foreach (char caracter in texto1)
+        {
+            Console.WriteLine(caracter);
+        }
+
+        Console.Write("Ingrese la palabra que desea buscar en la primera cadena: ");
+        string palabra = Console.ReadLine();
+        int posicion = texto1.IndexOf(palabra);
+        if (posicion >= 0)
+        {
+            Console.WriteLine("La palabra \"" + palabra + "\" se encontro en la posicion: " + posicion);
+        }
+        else
+        {
+            Console.WriteLine("La palabra \"" + palabra + "\" no se encontro en la cadena.");
+        }
+
+        string mayusculas = texto1.ToUpper();
+        string minusculas = texto1.ToLower();
+        Console.WriteLine("Cadena en mayusculas: " + mayusculas);
+        Console.WriteLine("Cadena en minusculas: " + minusculas);
+
+        Console.Write("Ingrese una cadena a separar: ");
+        string cadenaSeparada = Console.ReadLine();
+        Console.Write("Ingrese el delimitador utilizado: ");
+        string delimitador = Console.ReadLine();
+        string[] elementos = cadenaSeparada.Split(delimitador);
+        Console.WriteLine("La cadena se ha dividido en " + elementos.Length + " partes:");
+        foreach (string elemento in elementos)
+        {
+            Console.WriteLine(elemento.Trim());
+        }
+
+        Console.Write("Ingrese una ecuacion simple: ");
+        string ecuacion = Console.ReadLine();
+        if (ecuacion.Contains("+"))//analiza si contiene +
+        {
+            string[] ops = ecuacion.Split('+');
+            if (ops.Length == 2 &&
+                double.TryParse(ops[0].Trim(), out double opA) &&
+                double.TryParse(ops[1].Trim(), out double opB))
+            {
+                Console.WriteLine("El resultado de la ecuacion " + ecuacion + " es: " + (opA + opB));
+            }
+            else
+            {
+                Console.WriteLine("Formato de ecuacion incorrecto.");
+            }
+        }
+        else if (ecuacion.Contains("-"))
+        {
+            string[] ops = ecuacion.Split('-');
+            if (ops.Length == 2 &&
+                double.TryParse(ops[0].Trim(), out double opA) &&
+                double.TryParse(ops[1].Trim(), out double opB))
+            {
+                Console.WriteLine("El resultado de la ecuacion " + ecuacion + " es: " + (opA - opB));
+            }
+            else
+            {
+                Console.WriteLine("Formato de ecuacion incorrecto.");
+            }
+        }
+        else if (ecuacion.Contains("*"))
+        {
+            string[] ops = ecuacion.Split('*');
+            if (ops.Length == 2 &&
+                double.TryParse(ops[0].Trim(), out double opA) &&
+                double.TryParse(ops[1].Trim(), out double opB))
+            {
+                Console.WriteLine("El resultado de la ecuacion " + ecuacion + " es: " + (opA * opB));
+            }
+            else
+            {
+                Console.WriteLine("Formato de ecuacion incorrecto.");
+            }
+        }
+        else if (ecuacion.Contains("/"))
+        {
+            string[] ops = ecuacion.Split('/');
+            if (ops.Length == 2 &&
+                double.TryParse(ops[0].Trim(), out double opA) &&
+                double.TryParse(ops[1].Trim(), out double opB))
+            {
+                if (opB == 0)
+                {
+                    Console.WriteLine("Error: Division por cero.");
+                }
+                else
+                {
+                    Console.WriteLine("El resultado de la ecuacion " + ecuacion + " es: " + (opA / opB));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Formato de ecuacion incorrecto.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("La ecuacion ingresada no contiene ningun operador reconocido (+, -, *, /).");
+        }
+
+        Console.WriteLine("Presione cualquier tecla para salir...");
+        Console.ReadKey();
